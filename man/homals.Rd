@@ -51,7 +51,7 @@ This is the most general model of the Gifi family. All other models such as PRIN
 \references{
 Gifi, A. (1990). Nonlinear Multivariate Analysis. New York: Wiley.
 
-De Leeuw, J., Mair, P., Groenen, P. J. F. (2017). Multivariate Analysis with Optimal Scaling. \url{http://gifi.stat.ucla.edu/gifi/_book/}.
+De Leeuw, J., Mair, P., Groenen, P. J. F. (2017). Multivariate Analysis with Optimal Scaling.
 }
 \seealso{\code{\link{princals}}, \code{\link{plot.homals}}}
 \examples{

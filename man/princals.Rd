@@ -52,7 +52,7 @@ Fits PRINCALS as described in De Leeuw et al. (2017).
 \references{
 Gifi, A. (1990). Nonlinear Multivariate Analysis. New York: Wiley.
 
-De Leeuw, J., Mair, P., Groenen, P. J. F. (2017). Multivariate Analysis with Optimal Scaling. \url{http://gifi.stat.ucla.edu/gifi/_book/}. 
+De Leeuw, J., Mair, P., Groenen, P. J. F. (2017). Multivariate Analysis with Optimal Scaling. 
 }
 
 \seealso{\code{\link{homals}}, \code{\link{plot.princals}}}

@@ -70,3 +70,9 @@
     \item \code{seed} arguments removed from all functions.
   }
 }
+
+\section{Version 0.3-9}{
+ \itemize{
+    \item \code{psychTools} added in suggests.
+  }
+}
