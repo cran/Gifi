@@ -76,3 +76,9 @@
     \item \code{psychTools} added in suggests.
   }
 }
+
+\section{Version 0.3-10}{
+ \itemize{
+    \item Escape character fixes in various help files.
+    }
+}

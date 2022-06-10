@@ -1,4 +1,4 @@
-4a4de74e7f42020f3b39936627e4bc08 *DESCRIPTION
+b994ab4c90bf8265cda59834132f61de *DESCRIPTION
 ba18c47eba36a37685c9b8f9450c19ec *NAMESPACE
 b925be200b47384d3751407e04545160 *R/GramSchmidt.R
 68969ee770e0e04c87db2ef02d63c6b1 *R/coding.R
@@ -33,14 +33,14 @@ af6dd074d6e01fba391647e10d31042b *data/mammals.rda
 fa966b4ef74c1b372a63dfc66a99c7d3 *data/senate07.rda
 c8d33ae9f8647761b7e0111c55c50ce3 *data/sleeping.rda
 a501dcf7426feea4458746224e26f262 *data/small.rda
-673b4966e86881efec067ad1b21a35cb *inst/NEWS.Rd
+6a25558e539f703fbfc55f4c01aacf28 *inst/NEWS.Rd
 3f6cdb4272bfffc9d6763e071fa33ce3 *man/ABC.Rd
 effddfd41fc979ca4dd6d2246965a9fc *man/cv.morals.Rd
 7f62e5910826f601f67063264fd4153b *man/galo.Rd
 289f1b36fc9a82bdfdedf8805aa261fd *man/gubell.Rd
 4f3aa37dc99398bbba2cb2feb00686dd *man/hartigan.Rd
 8922d1c74ffc79b687649aea5d48313d *man/homals.Rd
-24cf6ff84b02bf91dfa684a4e427086e *man/house.Rd
+750036d1bf0b54c6ad5b24684a263db0 *man/house.Rd
 10aaddebeedb21d3f63a08b79bc15d37 *man/knotsGifi.Rd
 ca3d9d4f352e022e1511874debacafb1 *man/makeNumeric.Rd
 5fe0178aa729bdb231f69cdb0dd0e6a4 *man/mammals.Rd
@@ -51,8 +51,8 @@ ff262e58406e84cd48de87a9847a4992 *man/plot.morals.Rd
 7ad90b5479d38270d389ca9810cc6d32 *man/plot.princals.Rd
 1771a8cf50314bc5f092b96233407ea5 *man/princals.Rd
 4b26998f5d90d4a6d8c78ff58255a6bc *man/roskam.Rd
-257aa60d4a6ee2661aaed7340ffb797e *man/senate.Rd
-f30b1ee6f3c1b22ce7c3953b94c033e4 *man/senate07.Rd
+93bca46978cd5e2154f86ed12f5cc154 *man/senate.Rd
+5957d635aa3ef2b92920a0efc4d582c9 *man/senate07.Rd
 82e69e9fd8e86a47e68ebe579fa27cac *man/sleeping.Rd
 73f5b2d45c24ad5f087355c05c4725c0 *man/small.Rd
 c963d8307b96c9ca995102013fb789de *src/coding.c
