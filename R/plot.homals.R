@@ -1,7 +1,7 @@
 plot.homals <- function(x, plot.type = "jointplot", plot.dim = c(1, 2), var.subset = "all", 
                         col.points = rainbow_hcl(ncol(x$data)), col.scores = "gray", 
                         col.lines = 1:x$ndim, cex.scores = 0.8, cex.loadings = 0.8, 
-                        labels.scores = FALSE, stepvec = NA, max.plot.array = c(2, 2), 
+                        labels.scores = FALSE, stepvec = NA, max.plot.array = NA, 
                         asp = 1, main, xlab, ylab, xlim, ylim, ...)
   {
     
@@ -10,7 +10,7 @@ plot.homals <- function(x, plot.type = "jointplot", plot.dim = c(1, 2), var.subs
     ## plot.dim ... vector of length 2 with dimensions to be plotted against
     ## plot.type ... type of plot to be drawn: "loadplot", "screeplot", "biplot", "transplot"
     
-    match.arg(plot.type, c("jointplot", "biplot", "screeplot", "transplot"))
+    match.arg(plot.type, c("jointplot", "biplot", "screeplot", "transplot", "objplot"))
     
     if ((x$ndim == 1) && (plot.type != "transplot")) stop("No plot can be drawn for ndim = 1!")
     nvar <- length(x$quantifications)
@@ -51,11 +51,20 @@ plot.homals <- function(x, plot.type = "jointplot", plot.dim = c(1, 2), var.subs
     }
     #-------------------------------- end jointplot ---------------------------------
     
+    # ---------------------------------- object scores plot -------------------------
+    if (plot.type == "objplot") {
+      if (missing(main)) main <- "Object Scores"
+      if (missing(xlab)) xlab <- paste("Component", plot.dim[1])       ## labels
+      if (missing(ylab)) ylab <- paste("Component", plot.dim[2])  
+      
+      plot(x$objectscores[, plot.dim], col = col.scores, main = main, xlab = xlab, ylab = ylab, asp = asp, pch = ".", ...)
+      text(x$objectscores[, plot.dim], col = col.scores, cex = cex.scores, labels = rownames(x$objectscores), pos = 3)
+    }
+    
+    
     ## --------------------------------- biplot ------------------------------------
     if (plot.type == "biplot") {
-      normobj <- round(apply(x$objectscores^2, 2, sum)[1])
-      #if (normobj != 1) stop("For biplot re-fit the model with normobj.z = FALSE.")
-     
+      
       xycoorS <- x$objectscores[,plot.dim]
       xycoor <- rbind(do.call(rbind, x$quantifications)[,plot.dim], xycoorS)
       if (missing(xlim)) {                            ## x limits

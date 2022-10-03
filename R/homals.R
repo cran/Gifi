@@ -1,4 +1,4 @@
-homals <- function (data, ndim = 2, ordinal = FALSE, ties = "s", knots = knotsGifi(data, "D"), degrees = -1, missing = "m",
+homals <- function (data, ndim = 2,  levels = "nominal", ordinal, knots, ties = "s", degrees = -1, missing = "s",
                     normobj.z = TRUE, active = TRUE, itmax = 1000, eps = 1e-6, verbose = FALSE)  {
     
   ## --- sanity checks
@@ -12,6 +12,17 @@ homals <- function (data, ndim = 2, ordinal = FALSE, ties = "s", knots = knotsGi
   
   nvars <- ncol(data)
   nobs <- nrow(data)
+  
+  ## --- prep levels 
+  if (missing(knots)) {
+    levels <- reshape(levels, nvars)
+    levelprep <- level_to_spline(levels, data)
+    ordinal <- levelprep$ordvec
+    knots <- levelprep$knotList
+  }
+  
+  
+  
   g <- makeGifi(data = data, knots = knots, degrees = reshape (degrees, nvars), ordinal = reshape (ordinal, nvars),
                 ties = reshape (ties, nvars), copies = rep (ndim, ncol (data)), missing = reshape (missing, nvars),
                 active = reshape(active, nvars), names = names, sets = 1:nvars)

@@ -82,3 +82,10 @@
     \item Escape character fixes in various help files.
     }
 }
+\section{Version 0.4-0}{
+ \itemize{
+    \item \code{levels} argument in \code{homals} and \code{princals} added for easier spline specification. 
+    \item Various aesthetic fixes in \code{plot.princals} and \code{plot.homals}, \code{"objplot"} added.
+    \item In \code{princals}, if \code{copies} is a scalar the function creates a copies vector internally with a value of 2 for each nominal variable.
+    }
+}

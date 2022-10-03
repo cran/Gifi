@@ -8,7 +8,7 @@
 \method{plot}{homals}(x, plot.type = "jointplot", plot.dim = c(1, 2), 
 var.subset = "all", col.points = rainbow_hcl(ncol(x$data)), col.scores = "gray", 
 col.lines = 1:x$ndim, cex.scores = 0.8, cex.loadings = 0.8, labels.scores = FALSE, 
-stepvec = NA, max.plot.array = c(2, 2), asp = 1, main, xlab, ylab, xlim, ylim, ...)
+stepvec = NA, max.plot.array = NA, asp = 1, main, xlab, ylab, xlim, ylim, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -46,6 +46,8 @@ transformed scale (first dimension) for each variable separately.
 
 - Scree plot (\code{plot.type = "screeplot"}): Produces a scree plot based on the eigenvalues. 
 
+- Plotting the object scores (\code{plot.type = "objplot"}).
+
 For transformation plots only: If \code{stepvec = NA}, the function tries to figure out which variable should be plotted as step function. Alternatively, a boolean vector (with length number of variables) can be specified (\code{TRUE} step function, \code{FALSE} smooth function).
 }
 
@@ -59,7 +61,7 @@ plot(fithart, plot.type = "biplot", col.scores = "black")
 plot(fithart, plot.type = "biplot", col.scores = "black", labels.scores = TRUE, col.points = 1:6)
 plot(fithart, plot.type = "screeplot", col.lines = "red")
 plot(fithart, plot.type = "transplot", plot.dim = 1:3, col.lines = c(1, 2, 4))
-plot(fithart, plot.type = "transplot", stepvec = rep(FALSE, 6), max.plot.array = c(2,2))
+plot(fithart, plot.type = "objplot", plot.dim = 1:2, cex.scores = 0.9, col.scores = "black")
 }
 
 \keyword{ hplot }

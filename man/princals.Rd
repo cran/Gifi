@@ -8,28 +8,31 @@ Categorical principal component analysis (PRINCALS).
 Fits a categorical PCA. The default is to take each input variable as ordinal but it works for mixed scale levels (incl. nominal) as well. Through a proper spline specification various continuous transformation functions can be specified: linear, polynomials, and (monotone) splines. 
 }
 \usage{
-princals(data, ndim = 2, ordinal = TRUE, ties = "s", knots = knotsGifi(data, "D"), 
-degrees = 2, copies = 1, missing = "m", normobj.z = TRUE, active = TRUE,
+princals(data, ndim = 2, levels = "ordinal", ordinal, knots, ties = "s", 
+degrees = 1, copies = 1, missing = "s", normobj.z = TRUE, active = TRUE,
 itmax = 1000, eps = 1e-06, verbose = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{Input data frame: n observations, m variables}
   \item{ndim}{Number of dimensions to be computed}
-  \item{ordinal}{Whether variables should be considered as ordinal or not. Alternatively, one can specify a boolean vector of length m denoting which variables should be ordinally restricted or not.}
+   \item{levels}{A vector of length m denoting basic scale levels (\code{"nominal"}, \code{"ordinal"}, \code{"metric"}; see details}
+  \item{ordinal}{If knots are specified manually, a boolean vector of length m denotes which variables should be ordinally restricted or not (see details)}
+  \item{knots}{Scale levels can be specified manually using splines (see \code{\link{knotsGifi}}). If knots is set, this overrides \code{level} (see details)}
   \item{ties}{How ties should be handled: primary (\code{"p"}), secondary (\code{"s"}), or tertiary (\code{"t"})}
-  \item{knots}{Knots specification for spline transformation (see \code{\link{knotsGifi}})}
   \item{degrees}{Spline degrees. If different degrees should be used across variables, a vector of length m can be specified.}
-  \item{copies}{Number of copies for each variables (also as vector of length m)}
+  \item{copies}{Number of copies for each variables (also as vector of length m). If \code{copies} is a scalar the function creates a copies vector internally with a value of 2 for each nominal variable.}
   \item{missing}{How missing values should be handled: multiple (\code{"m"}), single (\code{"s"}), or average (\code{"a"})}
   \item{active}{Which variables should be active or inactive (also as vector of length m)}
-  \item{normobj.z}{If \code{TRUE}, object scores are z-scores, if \code{FALSE}, they are restriction to SS of 1.}
+  \item{normobj.z}{If \code{TRUE}, object scores are z-scores, if \code{FALSE}, they are restricted to SS of 1.}
   \item{itmax}{Maximum number of iterations}
   \item{eps}{Convergence criterion}
   \item{verbose}{Iteration printout}
 }
 \details{
-Fits PRINCALS as described in De Leeuw et al. (2017). 
+The measurement (or scale) levels of the variables are incorporated via spline transformations. If the user only needs simple scale levels like nominal, ordinal, and metric, a corresponding vector can be specified in the \code{levels} argument without setting \code{knots} and \code{ordinal}. The corresponding spline transformations (unrestricted, monotone, and linear) are then created internally. If all scale level transformations are the same, \code{ordinal} can be a single value. For more advanced transformations such as polynomial or more flexible splines, the \code{knots} and \code{ordinal} arguments need to be specified instead of \code{levels}.
+
+
 }
 \value{
 \item{transform}{Optimally transformed scores}
@@ -67,12 +70,12 @@ summary(fitord)
 
 plot(fitord, plot.type = "transplot")
 plot(fitord, "loadplot", main = "Loadings Plot ABC Data")  ## aspect ratio = 1
-plot(fitord, "biplot", labels.scores = TRUE, main = "Biplot ABC Data")
+plot(fitord, "biplot", main = "Biplot ABC Data")
 plot(fitord, "screeplot")
 
 ## linear restrictions (mimics standard PCA)
 abc_knots <- knotsGifi(ABC6, "E")     ## 0 interior knots
-fitlin <- princals(ABC6, knots = abc_knots, degrees = 1)  
+fitlin <- princals(ABC6, knots = abc_knots, ordinal = TRUE)  
 fitlin 
 fitlin$evals
 plot(fitlin, plot.type = "transplot")
@@ -84,7 +87,7 @@ fitpca$sdev^2
 
 ## more complicated specifications
 \dontrun{
-data(epi.bfi, package = "psych")
+data(epi.bfi, package = "psychTools")
 epi6 <- epi.bfi[,1:6]
 fitepi1 <- princals(epi6, knots = knotsGifi(epi6, "Q"))    ## monotone splines (degree 2)
 fitepi1

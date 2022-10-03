@@ -7,13 +7,13 @@
 \usage{
 \method{plot}{princals}(x, plot.type = "loadplot", plot.dim = c(1, 2), var.subset = "all", 
 col.scores = "black", col.loadings = "black", col.lines = "black", cex.scores = 0.8, 
-cex.loadings = 0.8, stepvec = NA, max.plot.array = c(2, 2), expand = 1, 
+cex.loadings = 0.8, stepvec = NA, max.plot.array = NA, expand = 1, 
 asp = 1, main, xlab, ylab, xlim, ylim, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{Object of class \code{"princals"}}
-  \item{plot.type}{String indicating which type of plot to be produced: \code{"biplot"}, \code{"loadplot"}, \code{"screeplot"}, \code{"transplot"}. See details.} 
+  \item{plot.type}{String indicating which type of plot to be produced: \code{"biplot"}, \code{"loadplot"}, \code{"screeplot"}, \code{"transplot"}, \code{"objplot"}. See details.} 
   \item{plot.dim}{Vector with dimensions to be plotted.}
   \item{var.subset}{Numeric vector for subsetting variables to be plotted. If missing, all variables are taken into account. Ignored for non separate variable plots.} 
   \item{col.scores}{Color object scores.} 
@@ -45,10 +45,13 @@ transformed scale (first dimension) for each variable separately.
 
 - Scree plot (\code{plot.type = "screeplot"}): Produces a scree plot based on the eigenvalues. 
 
+- Plotting the object scores (factor scores; \code{plot.type = "objplot"}).
+
 For transformation plots only: If \code{stepvec = NA}, the function tries to figure out which variable should be plotted as step function. Alternatively, a boolean vector (with length number of variables) can be specified (\code{TRUE} step function, \code{FALSE} smooth function).
 }
 
 \examples{
+## Ordinal PCA
 ABC6 <- ABC[,6:11]
 fitord <- princals(ABC6, ndim = 3)  ## 3D princals solution
 
@@ -59,12 +62,18 @@ plot(fitord, plot.type = "transplot", var.subset = 1:4, lwd = 2, col.lines = "co
 plot(fitord, "loadplot", main = "Loadings Plot ABC Data")
 
 ## biplot
-plot(fitord, "biplot", labels.scores = TRUE, main = "Biplot ABC Data", cex.scores = 0.5)  
+plot(fitord, "biplot", main = "Biplot ABC Data", cex.scores = 0.5)  
 plot(fitord, "biplot", main = "Biplot ABC Data")
 plot(fitord, "biplot", main = "Biplot ABC Data", plot.dim = c(2,3))
 
 ## scree plot
 plot(fitord, "screeplot")  
+
+## object scores
+plot(fitord, "objplot", cex.scores = 0.6)
+
+## PCA for mixed scale levels
+
 }
 
 \keyword{ hplot }
